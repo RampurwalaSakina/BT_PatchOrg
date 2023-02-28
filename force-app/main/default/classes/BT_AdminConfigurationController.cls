@@ -267,6 +267,7 @@ public with sharing class BT_AdminConfigurationController{
     *   UnitTests:  
     */
     private Component.Apex.OutputText getTabInfoCard(Admin_Interface_Node_Configuration__c objNodeConfiguration){
+        System.debug('objNodeConfiguration' +  objNodeConfiguration);
         Component.Apex.OutputText objTabInfoCard = new Component.Apex.OutputText(escape = false, value = '');
         if(objNodeConfiguration.Page_URL__c == null) {
             objTabInfoCard.value += '<td width="50%" class="parentNodeDiv" onclick="openChildNodeTab(\''+objNodeConfiguration.Id+'\');">';
@@ -334,6 +335,7 @@ public with sharing class BT_AdminConfigurationController{
     Throws:
     ********************************************************************/
     Public PageReference openVFPageTab(){
+        System.debug('openVFPageTab');        
         if (apexpages.currentpage().getparameters().get('prmPageUrl') != null && apexpages.currentpage().getparameters().get('prmPageUrl') != ''
              && apexpages.currentpage().getparameters().get('prmPageTabId') != null) {
             
@@ -342,8 +344,10 @@ public with sharing class BT_AdminConfigurationController{
             String strPageTabId = apexpages.currentpage().getparameters().get('prmPageTabId').escapeHtml4();
             
             system.debug('strPageName ---------> '+strPageName);
+            system.debug('strPageTabId ---------> '+strPageTabId);
             
             if (!strOpenedPageTabIds.Contains(strPageTabId)) {
+                System.debug(strOpenedPageTabIds.Contains(strPageTabId));
                 
                 List<String> fields = new List<String>{'Id', 'Name', 'Description__c', 'Open_New_Tab__c', 'Icon_URL__c', 'Page_URL__c', 'Tab_Name__c', 'Parent_Node__c'};
                 // Check field level access
@@ -351,6 +355,8 @@ public with sharing class BT_AdminConfigurationController{
                 // List of node configuration
                 Admin_Interface_Node_Configuration__c adminConfigurationNode;
                 for(Admin_Interface_Node_Configuration__c node : Database.query(String.escapeSingleQuotes('Select '+BT_Utils.buildSelectListFragment(null, null, fields) +' FROM Admin_Interface_Node_Configuration__c LIMIT 999'))){
+                    system.debug('node ---------> '+node);
+                   
                     if(node.Id == strPageTabId){
                         adminConfigurationNode = node;
                         break;
@@ -373,7 +379,7 @@ public with sharing class BT_AdminConfigurationController{
                 //Component.Apex.Image objImg = New Component.Apex.Image(id = 'image'+adminConfigurationNode.Id);
                 objPageTabContent.childComponents.add(objIframe);
                 //objPageTabContent.childComponents.add(objImg);
-                
+                system.debug('objIframe' + objIframe);                
                 if (strPageName.Contains('apex') && strPageName.Contains('?')) { 
                     objIframe.src = strPageName+'&isdtp=vw';
                     if(BT_Utils.isLightning()){
@@ -401,6 +407,11 @@ public with sharing class BT_AdminConfigurationController{
                 strOpenedTabIds += strPageTabId + ',';
                 strOpenedPageTabIds += strPageTabId + ',';
                 strSelectedTabId = strPageTabId;
+
+                system.debug('strOpenedTabIds ------> '+strOpenedTabIds);
+                system.debug('strOpenedPageTabIds ------> '+strOpenedPageTabIds);
+                system.debug('strSelectedTabId ------> '+strSelectedTabId);
+
                 
             } else {
                 strOpenedTabIds += strPageTabId + ',';

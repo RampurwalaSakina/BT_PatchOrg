@@ -83,6 +83,9 @@
             vfpageTabName = pageTabName;
             console.log(pageTabId,pageTabName);
             console.log('================');
+            console.log(pageUrl);
+            console.log(pageTabName);
+            console.log(pageTabId);
 
         }
         
