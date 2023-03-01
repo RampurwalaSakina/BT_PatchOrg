@@ -334,7 +334,6 @@ public with sharing class BT_AdminConfigurationController{
     Throws:
     ********************************************************************/
     Public PageReference openVFPageTab(){
-        System.debug('=====openVFPageTab=====');
         if (apexpages.currentpage().getparameters().get('prmPageUrl') != null && apexpages.currentpage().getparameters().get('prmPageUrl') != ''
              && apexpages.currentpage().getparameters().get('prmPageTabId') != null) {
             
@@ -402,11 +401,6 @@ public with sharing class BT_AdminConfigurationController{
                 strOpenedTabIds += strPageTabId + ',';
                 strOpenedPageTabIds += strPageTabId + ',';
                 strSelectedTabId = strPageTabId;
-
-                system.debug('strOpenedTabIds ------> '+strOpenedTabIds);
-                system.debug('strOpenedPageTabIds ------> '+strOpenedPageTabIds);
-                system.debug('strSelectedTabId ------> '+strSelectedTabId);
-
                 
             } else {
                 strOpenedTabIds += strPageTabId + ',';
@@ -796,7 +790,7 @@ public with sharing class BT_AdminConfigurationController{
         BTTraining.Icon_URL__c = '/resource/'+nameSpacePrefix+'SLDS/assets/icons/utility/settings_60.png';
         BTTraining.Open_New_Tab__c = false;
         BTTraining.Tab_Name__c = 'BT Training';
-        BTTraining.Page_URL__c = '/apex/BTStripeSettings';
+        // BTTraining.Page_URL__c = '/apex/BTStripeSettings';
         BTTraining.Description__c = 'Configure Training.';
         firstLevelNodes.add(BTTraining);
 
@@ -807,7 +801,6 @@ public with sharing class BT_AdminConfigurationController{
         BTOpportunityConfiguration.Icon_URL__c = '/resource/'+nameSpacePrefix+'SLDS/assets/icons/utility/settings_60.png';
         BTOpportunityConfiguration.Open_New_Tab__c = false;
         BTOpportunityConfiguration.Tab_Name__c = 'BT Opportunity Configuration';
-        BTOpportunityConfiguration.Page_URL__c = '/apex/BTStripeSettings';
         BTOpportunityConfiguration.Description__c = 'Configure Opportunity Process for your organization.';
         firstLevelNodes.add(BTOpportunityConfiguration);
 
@@ -865,7 +858,6 @@ public with sharing class BT_AdminConfigurationController{
         PaymentApplicationConfiguration.Page_URL__c = '/apex/BT_CreatePaymentApplicationConfiguration';
         PaymentApplicationConfiguration.buildertek__Get_Lines_From_CO__c = true;
         PaymentApplicationConfiguration.buildertek__User_SOV_Sharing__c = true;
-        // PaymentApplicationConfiguration.buildertek__Default_Account_for_PA__c = '0011K00002PFYi5QAH';
         firstLevelNodes.add(PaymentApplicationConfiguration);
 
         Admin_Interface_Node_Configuration__c PreQualificationConfiguration = new Admin_Interface_Node_Configuration__c();
@@ -909,7 +901,6 @@ public with sharing class BT_AdminConfigurationController{
         SOVConfiguration.Open_New_Tab__c = false;
         SOVConfiguration.Tab_Name__c = 'SOV Configuration';
         SOVConfiguration.Page_URL__c = '/apex/BT_BOX_Settings';
-        // SOVConfiguration.buildertek__Default_Account_for_SOV__c = '0011K00002PFYi5QAH';
         firstLevelNodes.add(SOVConfiguration);
 
         Admin_Interface_Node_Configuration__c RFQConfiguration1 = new Admin_Interface_Node_Configuration__c();
@@ -922,8 +913,6 @@ public with sharing class BT_AdminConfigurationController{
         RFQConfiguration1.Page_URL__c = '/apex/BT_CreateRFQConfiguration';
         RFQConfiguration1.buildertek__Email_Subject__c = 'BuilderTek RFQ';
         RFQConfiguration1.buildertek__Retreive_Aerial_Photo_of_project__c = true;
-        // RFQConfiguration1.buildertek__Google_Map_API_Key__c = 'AIzaSyA3kg7YWugGl1lTXmAmaBGPNhDW9pEh5bo';
-        // RFQConfiguration1.buildertek__Community_URL__c = 'https://buildertekcom-developer-edition.na75.force.com/vendor';
         firstLevelNodes.add(RFQConfiguration1);
 
         Admin_Interface_Node_Configuration__c PurchaseOrderConfiguration1 = new Admin_Interface_Node_Configuration__c();
@@ -958,7 +947,7 @@ public with sharing class BT_AdminConfigurationController{
         CreatinganewUser.Icon_URL__c = '/resource/'+nameSpacePrefix+'SLDS/assets/icons/utility/settings_60.png';
         CreatinganewUser.Open_New_Tab__c = false;
         CreatinganewUser.Tab_Name__c = 'Creating a new User';
-        // CreatinganewUser.Page_URL__c = '/apex/DisplayContents?id=a0H1K00000aWTfhUAG';
+        CreatinganewUser.Page_URL__c = '/apex/DisplayContents';
         CreatinganewUser.Description__c = 'Configure creating new users';
         firstLevelNodes.add(CreatinganewUser);
 
@@ -979,8 +968,8 @@ public with sharing class BT_AdminConfigurationController{
         CreateAccount.Icon_URL__c = '/resource/'+nameSpacePrefix+'SLDS/assets/icons/utility/settings_60.png';
         CreateAccount.Open_New_Tab__c = false;
         CreateAccount.Tab_Name__c = 'Create Account';
-        // CreateAccount.Page_URL__c = '/apex/DisplayContents?id=a0H1K00000aWTm4UAG';
         CreateAccount.Description__c = 'Configure Accounts';
+        CreateAccount.Page_URL__c = '/apex/DisplayContents';
         firstLevelNodes.add(CreateAccount);
 
         Admin_Interface_Node_Configuration__c CreateContact = new Admin_Interface_Node_Configuration__c();
@@ -990,9 +979,10 @@ public with sharing class BT_AdminConfigurationController{
         CreateContact.Icon_URL__c = '/resource/'+nameSpacePrefix+'SLDS/assets/icons/utility/settings_60.png';
         CreateContact.Open_New_Tab__c = false;
         CreateContact.Tab_Name__c = 'Create Contact';
-        // CreateContact.Page_URL__c = '/apex/DisplayContents?id=a0H1K00000aWTm9UAG';
         CreateContact.Description__c = 'Configure Contacts';
         CreateContact.buildertek__Header_Text__c = 'Create Contact';
+        CreateContact.Page_URL__c = '/apex/DisplayContents';
+
         firstLevelNodes.add(CreateContact);
 
         Admin_Interface_Node_Configuration__c OpportunityConfiguration = new Admin_Interface_Node_Configuration__c();
@@ -1002,8 +992,8 @@ public with sharing class BT_AdminConfigurationController{
         OpportunityConfiguration.Icon_URL__c = '/resource/'+nameSpacePrefix+'SLDS/assets/icons/utility/settings_60.png';
         OpportunityConfiguration.Open_New_Tab__c = false;
         OpportunityConfiguration.Tab_Name__c = 'Opportunity Configuration';
-        OpportunityConfiguration.Page_URL__c = '/apex/BT_CreateOpportunityConfiguration';
         OpportunityConfiguration.buildertek__Assign_to_Existing_Project_on_Closed_Won__c = true;
+        OpportunityConfiguration.Page_URL__c = '/apex/BT_CreateOpportunityConfiguration';
         firstLevelNodes.add(OpportunityConfiguration);
 
         Admin_Interface_Node_Configuration__c QuoteConfiguration = new Admin_Interface_Node_Configuration__c();
@@ -1017,8 +1007,6 @@ public with sharing class BT_AdminConfigurationController{
         QuoteConfiguration.buildertek__Create_Project_from_Opportunity__c = true;
         QuoteConfiguration.buildertek__Quote_Configuration__c = true;
         QuoteConfiguration.buildertek__Update_the_Opp_Amount__c = true;
-        // QuoteConfiguration.buildertek__Org_Base_URL__c = 'https://btservice360-dev-ed--buildertek.na75.visual.force.com';
-        // QuoteConfiguration.buildertek__Default_Project_Owner__c = '00541000000QRY5AAO';
         firstLevelNodes.add(QuoteConfiguration);
 
         try {
@@ -1034,14 +1022,14 @@ public with sharing class BT_AdminConfigurationController{
              indexMap2.put(32,23);
              indexMap2.put(33,22);
              indexMap2.put(34,24);
-             indexMap2.put(12,35);
+             indexMap2.put(35,12);
              indexMap2.put(36,10);
              indexMap2.put(37,17);
              indexMap2.put(3,18);
              indexMap2.put(1,18);
              indexMap2.put(2,18);
              indexMap2.put(38,19);
-             indexMap2.put(25,39);
+             indexMap2.put(39,25);
              indexMap2.put(40,27);
              indexMap2.put(41,13);
              indexMap2.put(42,28);
